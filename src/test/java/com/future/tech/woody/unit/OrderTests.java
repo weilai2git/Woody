@@ -23,7 +23,7 @@ public class OrderTests {
 	private BigDecimal amount;
 	
 	@Before
-	public void setup() {
+	public void setUp() {
 		// init orderFactory
 		orderFactory = new OrderFactory();
 		userId = 1;
