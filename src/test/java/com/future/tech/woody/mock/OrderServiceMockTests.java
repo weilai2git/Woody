@@ -1,5 +1,7 @@
 package com.future.tech.woody.mock;
 
+import static org.mockito.Mockito.*;
+
 import java.math.BigDecimal;
 import java.sql.SQLException;
 
@@ -61,11 +63,25 @@ public class OrderServiceMockTests {
 	
 	@Test
 	public void updateWithSucc() {
-		Mockito.when(orderDao.query(Mockito.anyInt())).thenReturn(Mockito.any(Order.class));
-		Mockito.when(orderDao.update(Mockito.any(Order.class))).thenReturn(1);
+		Order order = mock(Order.class);
+		when(order.prepare2Pay()).thenReturn(true);
+		when(orderDao.query(anyInt())).thenReturn(order);
+		when(orderDao.update(order)).thenReturn(1);
 		int orderId = 100001;
-		target.payForOrder(100001);
+		target.payForOrder(orderId);
 		Mockito.verify(orderDao).query(orderId);
-		Mockito.verify(orderDao).update(Mockito.any(Order.class));
+		Mockito.verify(orderDao).update(order);
+	}
+	
+	@Test(expected=IllegalAccessError.class)
+	public void updateWithExcepton() {
+		Order order = mock(Order.class);
+		when(order.prepare2Pay()).thenReturn(true);
+		when(orderDao.query(anyInt())).thenReturn(order);
+		when(orderDao.update(order)).thenReturn(0);
+		int orderId = 100001;
+		target.payForOrder(orderId);
+		Mockito.verify(orderDao).query(orderId);
+		Mockito.verify(orderDao).update(order);
 	}
 }
