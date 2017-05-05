@@ -1,0 +1,33 @@
+<!DOCTYPE dataset SYSTEM "my-dataset.dtd">
+<dataset>
+	<table name="test_order">
+		<column>id</column>
+		<column>currency</column>
+		<column>amount</column>
+		<column>status</column>
+		<column>user_id</column>
+		<column>add_date</column>
+		<column>update_date</column>
+		<column>pay_status</column>
+		<row>
+			<value>1</value>
+			<value>RMB</value>
+			<value>100</value>
+			<value>1</value>
+			<value>1</value>
+			<none/>
+			<none/>
+			<value>1</value>
+		</row>
+		<row>
+			<value>2</value>
+			<value>USD</value>
+			<value>11.2</value>
+			<value>1</value>
+			<value>2</value>
+			<none/>
+			<none/>
+			<value>1</value>
+		</row>
+	</table>
+</dataset>
