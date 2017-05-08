@@ -9,5 +9,6 @@ public interface OrderService {
 	Order create(int userId, String currency, BigDecimal amount);
 
 	Order payForOrder(int orderId);
-
+	
+	Order queryById(int orderId);
 }

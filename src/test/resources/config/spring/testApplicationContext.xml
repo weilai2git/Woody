@@ -13,6 +13,8 @@
         http://www.springframework.org/schema/jdbc
         http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd">
 
+	<context:component-scan base-package="com.future.tech.woody" />
+
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
 		init-method="init" destroy-method="close">
 		<property name="url" value="jdbc:hsqldb:mem:testDB" />

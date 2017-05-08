@@ -3,12 +3,14 @@ package com.future.tech.woody.service.impl;
 import java.math.BigDecimal;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.future.tech.woody.dao.OrderDao;
 import com.future.tech.woody.domain.Order;
 import com.future.tech.woody.factory.OrderFactory;
 import com.future.tech.woody.service.OrderService;
 
+@Service
 public class OrderServiceImpl implements OrderService {
 	
 	@Autowired
@@ -41,5 +43,10 @@ public class OrderServiceImpl implements OrderService {
 		} else {
 			throw new IllegalArgumentException("Error to prepare");
 		}
+	}
+
+	@Override
+	public Order queryById(int orderId) {
+		return orderDao.query(orderId);
 	}
 }

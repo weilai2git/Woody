@@ -10,8 +10,6 @@
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
-	<context:component-scan base-package="com.future.tech.woody" />
-
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="mapperLocations" value="classpath:/config/mybatis/sqlmap/*Mapper.xml" />
@@ -22,8 +20,12 @@
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 
-	<!-- <bean id="OrderDao" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
-		<property name="mapperInterface" value="com.future.tech.woody.dao.OrderDao" 
-		/> <property name="sqlSessionFactory" ref="sqlSessionFactory" /> </bean> -->
+	<!-- not use in product env, maybe use mysql in product env -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		init-method="init" destroy-method="close">
+		<property name="url" value="jdbc:hsqldb:mem:testDB" />
+		<property name="username" value="sa" />
+		<property name="password" value="" />
+	</bean>
 
 </beans>
